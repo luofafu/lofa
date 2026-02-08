@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付成功 - 电子产品商城</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            text-align: center;
+            font-size: 28px;
+        }
+        
+        .success-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #27ae60;
+            margin-bottom: 30px;
+        }
+        
+        .success-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #27ae60;
+        }
+        
+        .success-message {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .order-info {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .order-label {
+            color: #666;
+        }
+        
+        .order-value {
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-primary {
+            background-color: #27ae60;
+        }
+        
+        .btn-primary:hover {
+            background-color: #219a52;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>电子产品商城</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="success-card">
+            <div class="success-icon">✓</div>
+            <h2 class="success-title">支付成功！</h2>
+            <p class="success-message">您的订单已支付成功，感谢您的购买！</p>
+            
+            <div class="order-info">
+                <div class="order-item">
+                    <span class="order-label">商品名称：</span>
+                    <span class="order-value">{{ order.product.name }}</span>
+                </div>
+                <div class="order-item">
+                    <span class="order-label">支付金额：</span>
+                    <span class="order-value">¥{{ order.amount }}</span>
+                </div>
+                <div class="order-item">
+                    <span class="order-label">订单编号：</span>
+                    <span class="order-value">{{ order.order_no }}</span>
+                </div>
+                <div class="order-item">
+                    <span class="order-label">支付时间：</span>
+                    <span class="order-value">{{ order.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                </div>
+            </div>
+            
+            <div>
+                <a href="{{ url_for('index') }}" class="btn">继续购物</a>
+                <a href="{{ url_for('product_detail', product_id=order.product.id) }}" class="btn btn-primary">查看商品</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 电子产品商城. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>
